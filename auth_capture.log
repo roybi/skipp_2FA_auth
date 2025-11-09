@@ -1,0 +1,58 @@
+2025-11-08 21:22:36,672 - INFO - State directory: C:\_Dev\python\skipp_2FA_auth\auth_states
+2025-11-08 21:24:32,710 - INFO - State directory: C:\_Dev\python\skipp_2FA_auth\auth_states
+2025-11-08 21:24:33,614 - INFO - Launched chromium browser (headless=False)
+2025-11-08 21:24:33,831 - INFO - Opening https://your-meditek-app.com/login for manual authentication...
+2025-11-08 21:24:34,205 - ERROR - Failed to capture authentication state: Page.goto: net::ERR_NAME_NOT_RESOLVED at https://your-meditek-app.com/login
+Call log:
+  - navigating to "https://your-meditek-app.com/login", waiting until "networkidle"
+Traceback (most recent call last):
+  File "C:\_Dev\python\skipp_2FA_auth\auth_capture.py", line 553, in capture_authentication
+    state = await auth_manager.capture_auth_state(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+    )
+    ^
+  File "C:\_Dev\python\skipp_2FA_auth\auth_capture.py", line 157, in capture_auth_state
+    await page.goto(url, wait_until="networkidle", timeout=60000)
+  File "C:\Users\Roy Bichovsky\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\playwright\async_api\_generated.py", line 8992, in goto
+    await self._impl_obj.goto(
+        url=url, timeout=timeout, waitUntil=wait_until, referer=referer
+    )
+  File "C:\Users\Roy Bichovsky\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\playwright\_impl\_page.py", line 556, in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Roy Bichovsky\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\playwright\_impl\_frame.py", line 153, in goto
+    await self._channel.send(
+        "goto", self._navigation_timeout, locals_to_params(locals())
+    )
+  File "C:\Users\Roy Bichovsky\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\playwright\_impl\_connection.py", line 69, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\Roy Bichovsky\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\playwright\_impl\_connection.py", line 558, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.Error: Page.goto: net::ERR_NAME_NOT_RESOLVED at https://your-meditek-app.com/login
+Call log:
+  - navigating to "https://your-meditek-app.com/login", waiting until "networkidle"
+
+2025-11-08 22:41:35,145 - INFO - State directory: C:\_Dev\python\skipp_2FA_auth\auth_states
+2025-11-08 22:41:35,925 - INFO - Launched chromium browser (headless=False)
+2025-11-08 22:41:36,110 - INFO - Opening https://meditik.test.medical.idf.il/ for manual authentication...
+2025-11-08 22:42:55,069 - INFO - State directory: C:\_Dev\python\skipp_2FA_auth\auth_states
+2025-11-08 22:42:55,665 - INFO - Launched chromium browser (headless=False)
+2025-11-08 22:42:55,838 - INFO - Opening https://meditik.test.medical.idf.il/ for manual authentication...
+2025-11-08 22:47:46,772 - INFO - Captured 31 cookies
+2025-11-08 22:47:46,792 - INFO - Found token: 6edd79d4-efdd-46c4-b40d-fa5abf... (length: 2062)
+2025-11-08 22:47:46,793 - INFO - Found token: 6edd79d4-efdd-46c4-b40d-fa5abf... (length: 1767)
+2025-11-08 22:47:46,793 - INFO - Found token: 6edd79d4-efdd-46c4-b40d-fa5abf... (length: 1749)
+2025-11-08 22:47:46,793 - INFO - Captured 3 authentication tokens
+2025-11-08 22:47:46,793 - INFO - Found auth cookie: ESTSAUTHLIGHT (domain: login.microsoftonline.com)
+2025-11-08 22:47:46,793 - INFO - Found auth cookie: ESTSAUTHPERSISTENT (domain: .login.microsoftonline.com)
+2025-11-08 22:47:46,793 - INFO - Found auth cookie: ESTSAUTH (domain: .login.microsoftonline.com)
+2025-11-08 22:47:46,793 - INFO - Found auth cookie: ai_session (domain: login.microsoftonline.com)
+2025-11-08 22:47:46,793 - INFO - Found auth cookie: ai_session (domain: meditik.test.medical.idf.il)
+2025-11-08 22:47:46,793 - INFO - Found auth cookie: ai_authUser (domain: meditik.test.medical.idf.il)
+2025-11-08 22:47:46,798 - INFO - State saved to: auth_states\auth_state_test_chromium_20251108_224746.json
+2025-11-08 22:47:46,798 - INFO - Latest link updated: auth_states\auth_state_test_chromium_latest.json
