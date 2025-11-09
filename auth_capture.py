@@ -139,7 +139,7 @@ class AuthStateManager:
 
             # Create context with specific settings
             context = await browser.new_context(
-                viewport={"width": 1920, "height": 1080},
+                viewport={"width": 430, "height": 932},
                 locale="he-IL",  # Hebrew locale for Israeli users
                 timezone_id="Asia/Jerusalem",
                 # Important: Accept all cookies for Microsoft auth
@@ -155,6 +155,9 @@ class AuthStateManager:
 
             logger.info(f"Opening {url} for manual authentication...")
             await page.goto(url, wait_until="networkidle", timeout=60000)
+
+            # Set browser zoom to 50% for better visibility
+            await page.evaluate("document.body.style.zoom = '0.5'")
 
             # Display instructions
             self._display_instructions(url, environment)
@@ -480,7 +483,7 @@ class AuthStateManager:
         # Create context with saved storage state - this is the magic!
         context = await browser.new_context(
             storage_state=state_data["storage_state"],  # Load all auth data
-            viewport={"width": 1920, "height": 1080},
+            viewport={"width": 430, "height": 932},
             locale="he-IL",
             timezone_id="Asia/Jerusalem",
         )
