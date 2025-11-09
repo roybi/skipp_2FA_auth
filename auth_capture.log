@@ -56,3 +56,88 @@ Call log:
 2025-11-08 22:47:46,793 - INFO - Found auth cookie: ai_authUser (domain: meditik.test.medical.idf.il)
 2025-11-08 22:47:46,798 - INFO - State saved to: auth_states\auth_state_test_chromium_20251108_224746.json
 2025-11-08 22:47:46,798 - INFO - Latest link updated: auth_states\auth_state_test_chromium_latest.json
+2025-11-09 10:06:09,257 - INFO - State directory: C:\_Dev\python\skipp_2FA_auth\auth_states
+2025-11-09 10:06:10,188 - INFO - Launched chromium browser (headless=False)
+2025-11-09 10:06:10,381 - INFO - Opening https://meditik.test.medical.idf.il/ for manual authentication...
+2025-11-09 10:10:30,671 - INFO - State directory: C:\_Dev\python\skipp_2FA_auth\auth_states
+2025-11-09 10:10:31,360 - INFO - Launched chromium browser (headless=False)
+2025-11-09 10:10:31,602 - INFO - Opening https://meditik.test.medical.idf.il/ for manual authentication...
+2025-11-09 10:13:07,913 - INFO - State directory: C:\_Dev\python\skipp_2FA_auth\auth_states
+2025-11-09 10:13:08,582 - INFO - Launched chromium browser (headless=False)
+2025-11-09 10:13:08,821 - INFO - Opening https://meditik.test.medical.idf.il/ for manual authentication...
+2025-11-09 10:13:18,082 - ERROR - Failed to capture authentication state: Page.goto: Target page, context or browser has been closed
+Call log:
+  - navigating to "https://meditik.test.medical.idf.il/", waiting until "networkidle"
+Traceback (most recent call last):
+  File "C:\_Dev\python\skipp_2FA_auth\auth_capture.py", line 557, in capture_authentication
+    state = await auth_manager.capture_auth_state(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+    )
+    ^
+  File "C:\_Dev\python\skipp_2FA_auth\auth_capture.py", line 157, in capture_auth_state
+    await page.goto(url, wait_until="networkidle", timeout=60000)
+  File "C:\Users\Roy Bichovsky\AppData\Roaming\Python\Python314\site-packages\playwright\async_api\_generated.py", line 8992, in goto
+    await self._impl_obj.goto(
+        url=url, timeout=timeout, waitUntil=wait_until, referer=referer
+    )
+  File "C:\Users\Roy Bichovsky\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_page.py", line 556, in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Roy Bichovsky\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_frame.py", line 153, in goto
+    await self._channel.send(
+        "goto", self._navigation_timeout, locals_to_params(locals())
+    )
+  File "C:\Users\Roy Bichovsky\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_connection.py", line 69, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\Roy Bichovsky\AppData\Roaming\Python\Python314\site-packages\playwright\_impl\_connection.py", line 558, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TargetClosedError: Page.goto: Target page, context or browser has been closed
+Call log:
+  - navigating to "https://meditik.test.medical.idf.il/", waiting until "networkidle"
+
+2025-11-09 10:16:00,237 - INFO - State directory: C:\_Dev\python\skipp_2FA_auth\auth_states
+2025-11-09 10:16:00,931 - INFO - Launched chromium browser (headless=False)
+2025-11-09 10:16:01,181 - INFO - Opening https://meditik.test.medical.idf.il/ for manual authentication...
+2025-11-09 10:20:19,760 - INFO - State directory: C:\_Dev\python\skipp_2FA_auth\auth_states
+2025-11-09 10:20:20,421 - INFO - Launched chromium browser (headless=False)
+2025-11-09 10:20:20,589 - INFO - Opening https://meditik.test.medical.idf.il/ for manual authentication...
+2025-11-09 10:27:25,869 - INFO - State directory: C:\_Dev\python\skipp_2FA_auth\auth_states
+2025-11-09 10:27:26,537 - INFO - Launched chromium browser (headless=False)
+2025-11-09 10:27:26,745 - INFO - Opening https://meditik.test.medical.idf.il/ for manual authentication...
+2025-11-09 10:29:42,285 - INFO - State directory: C:\_Dev\python\skipp_2FA_auth\auth_states
+2025-11-09 10:29:42,959 - INFO - Launched chromium browser (headless=False)
+2025-11-09 10:29:43,159 - INFO - Opening https://meditik.test.medical.idf.il/ for manual authentication...
+2025-11-09 10:31:54,262 - INFO - Captured 29 cookies
+2025-11-09 10:31:54,298 - INFO - Found token: 6edd79d4-efdd-46c4-b40d-fa5abf... (length: 2089)
+2025-11-09 10:31:54,299 - INFO - Found token: 6edd79d4-efdd-46c4-b40d-fa5abf... (length: 1794)
+2025-11-09 10:31:54,299 - INFO - Found token: 6edd79d4-efdd-46c4-b40d-fa5abf... (length: 1781)
+2025-11-09 10:31:54,300 - INFO - Captured 3 authentication tokens
+2025-11-09 10:31:54,301 - INFO - Found auth cookie: ESTSAUTHLIGHT (domain: login.microsoftonline.com)
+2025-11-09 10:31:54,302 - INFO - Found auth cookie: ai_session (domain: login.microsoftonline.com)
+2025-11-09 10:31:54,303 - INFO - Found auth cookie: ESTSAUTHPERSISTENT (domain: .login.microsoftonline.com)
+2025-11-09 10:31:54,303 - INFO - Found auth cookie: ESTSAUTH (domain: .login.microsoftonline.com)
+2025-11-09 10:31:54,306 - INFO - Found auth cookie: ai_session (domain: meditik.test.medical.idf.il)
+2025-11-09 10:31:54,308 - INFO - Found auth cookie: ai_authUser (domain: meditik.test.medical.idf.il)
+2025-11-09 10:31:54,319 - INFO - State saved to: auth_states\auth_state_test_chromium_20251109_103154.json
+2025-11-09 10:31:54,319 - INFO - Latest link updated: auth_states\auth_state_test_chromium_latest.json
+2025-11-09 10:44:22,665 - INFO - State directory: C:\_Dev\python\skipp_2FA_auth\auth_states
+2025-11-09 10:44:23,472 - INFO - Launched chromium browser (headless=False)
+2025-11-09 10:44:23,657 - INFO - Opening https://meditik.test.medical.idf.il/ for manual authentication...
+2025-11-09 10:46:48,596 - INFO - Captured 28 cookies
+2025-11-09 10:46:48,689 - INFO - Found token: 6edd79d4-efdd-46c4-b40d-fa5abf... (length: 2089)
+2025-11-09 10:46:48,693 - INFO - Found token: 6edd79d4-efdd-46c4-b40d-fa5abf... (length: 1794)
+2025-11-09 10:46:48,693 - INFO - Found token: 6edd79d4-efdd-46c4-b40d-fa5abf... (length: 1782)
+2025-11-09 10:46:48,693 - INFO - Captured 3 authentication tokens
+2025-11-09 10:46:48,694 - INFO - Found auth cookie: ESTSAUTHLIGHT (domain: login.microsoftonline.com)
+2025-11-09 10:46:48,694 - INFO - Found auth cookie: ai_session (domain: login.microsoftonline.com)
+2025-11-09 10:46:48,694 - INFO - Found auth cookie: ESTSAUTHPERSISTENT (domain: .login.microsoftonline.com)
+2025-11-09 10:46:48,694 - INFO - Found auth cookie: ESTSAUTH (domain: .login.microsoftonline.com)
+2025-11-09 10:46:48,695 - INFO - Found auth cookie: ai_session (domain: meditik.test.medical.idf.il)
+2025-11-09 10:46:48,695 - INFO - Found auth cookie: ai_authUser (domain: meditik.test.medical.idf.il)
+2025-11-09 10:46:48,704 - INFO - State saved to: auth_states\auth_state_test_chromium_20251109_104648.json
+2025-11-09 10:46:48,708 - INFO - Latest link updated: auth_states\auth_state_test_chromium_latest.json

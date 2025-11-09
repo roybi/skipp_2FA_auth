@@ -55,8 +55,8 @@ class AuthStateManager:
             browser = await self._launch_browser(p, browser_type, headless)
 
             context = await browser.new_context(
-                viewport={"width": 1920, "height": 1080},
-                locale="he-IL",
+                viewport={"width": 430, "height": 932},
+                locale="he-IL",  # Hebrew locale for Israeli users
                 timezone_id="Asia/Jerusalem",
                 accept_downloads=True,
                 ignore_https_errors=False,
@@ -70,6 +70,10 @@ class AuthStateManager:
             logger.info(f"Opening {url} for manual authentication...")
             await page.goto(url, wait_until="networkidle", timeout=60000)
 
+            # Set browser zoom to 50% for better visibility
+            await page.evaluate("document.body.style.zoom = '0.5'")
+
+            # Display instructions
             self._display_instructions(url, environment)
 
             input(
@@ -91,7 +95,9 @@ class AuthStateManager:
     def _display_instructions(self, url: str, environment: str):
         """Display authentication instructions."""
         print(f"\n{Fore.YELLOW}{'=' * 70}")
-        print(f"{Fore.YELLOW}MANUAL AUTHENTICATION REQUIRED - {environment.upper()} Environment")
+        print(
+            f"{Fore.YELLOW}MANUAL AUTHENTICATION REQUIRED - {environment.upper()} Environment"
+        )
         print(f"{Fore.YELLOW}{'=' * 70}")
         print(f"\n{Fore.WHITE}Follow these steps:")
         print(f"{Fore.GREEN}1. ✓ Browser opened at: {Fore.CYAN}{url}")
@@ -99,7 +105,9 @@ class AuthStateManager:
         print(f"{Fore.GREEN}3. → Complete Microsoft 2FA verification")
         print(f"{Fore.GREEN}4. → Wait for the main application page to load")
         print(f"{Fore.GREEN}5. → Return to this terminal and press ENTER")
-        print(f"\n{Fore.YELLOW}⚠️  DO NOT close the browser! The script will do it automatically.")
+        print(
+            f"\n{Fore.YELLOW}⚠️  DO NOT close the browser! The script will do it automatically."
+        )
         print(f"{Fore.YELLOW}{'=' * 70}")
 
     def _display_success(self, filename: str, environment: str, browser_type: str):
@@ -112,26 +120,36 @@ class AuthStateManager:
         print(f"{Fore.WHITE}🌐 Browser: {Fore.CYAN}{browser_type}")
         print(f"\n{Fore.YELLOW}HOW TO USE:")
         print(f"{Fore.CYAN}   auth_manager = AuthStateManager()")
-        print(f"{Fore.CYAN}   state = await auth_manager.load_auth_state('{environment}', '{browser_type}')")
-        print(f"{Fore.CYAN}   context = await auth_manager.create_authenticated_context(...)")
+        print(
+            f"{Fore.CYAN}   state = await auth_manager.load_auth_state('{environment}', '{browser_type}')"
+        )
+        print(
+            f"{Fore.CYAN}   context = await auth_manager.create_authenticated_context(...)"
+        )
         print(f"\n{Fore.GREEN}Your tests can now skip login! 🚀")
         print(f"{Fore.GREEN}{'=' * 70}\n")
 
     def _log_request(self, request):
         """Log authentication-related requests."""
         url = request.url
-        if any(p in url.lower() for p in ["login", "auth", "token", "microsoft", "oauth"]):
+        if any(
+            p in url.lower() for p in ["login", "auth", "token", "microsoft", "oauth"]
+        ):
             logger.debug(f"→ Auth Request: {request.method} {url}")
 
     def _log_response(self, response):
         """Log authentication responses."""
         url = response.url
-        if any(p in url.lower() for p in ["login", "auth", "token", "microsoft", "oauth"]):
+        if any(
+            p in url.lower() for p in ["login", "auth", "token", "microsoft", "oauth"]
+        ):
             logger.debug(f"← Auth Response: {response.status} {url}")
             if response.status >= 400:
                 logger.warning(f"Auth Error: {response.status} at {url}")
 
-    async def _capture_complete_state(self, context: BrowserContext, page: Page) -> Dict:
+    async def _capture_complete_state(
+        self, context: BrowserContext, page: Page
+    ) -> Dict:
         """Capture all authentication data (cookies, storage, tokens)."""
         storage_state = await context.storage_state()
 
@@ -156,8 +174,13 @@ class AuthStateManager:
 
         # Log key authentication cookies
         for cookie in storage_state.get("cookies", []):
-            if any(p in cookie["name"].lower() for p in [".aspnet", "msal", "auth", "session"]):
-                logger.info(f"Found auth cookie: {cookie['name']} (domain: {cookie['domain']})")
+            if any(
+                p in cookie["name"].lower()
+                for p in [".aspnet", "msal", "auth", "session"]
+            ):
+                logger.info(
+                    f"Found auth cookie: {cookie['name']} (domain: {cookie['domain']})"
+                )
 
         return state_data
 
@@ -191,9 +214,19 @@ class AuthStateManager:
 
         # Token patterns to search for
         token_keys = [
-            "access_token", "id_token", "refresh_token",
-            "msal", "adal", "bearer", "jwt", "auth", "token", "session",
-            ".authority", ".idtoken", ".accesstoken",
+            "access_token",
+            "id_token",
+            "refresh_token",
+            "msal",
+            "adal",
+            "bearer",
+            "jwt",
+            "auth",
+            "token",
+            "session",
+            ".authority",
+            ".idtoken",
+            ".accesstoken",
         ]
 
         # Extract matching tokens
@@ -201,7 +234,9 @@ class AuthStateManager:
             for key, value in storage_dict.items():
                 if any(token_key in key.lower() for token_key in token_keys):
                     tokens[key] = value
-                    logger.info(f"Found token: {key[:30]}... (length: {len(str(value))})")
+                    logger.info(
+                        f"Found token: {key[:30]}... (length: {len(str(value))})"
+                    )
 
         return tokens
 
@@ -260,20 +295,26 @@ class AuthStateManager:
         headless: bool = True,
     ) -> tuple[Browser, BrowserContext]:
         """Create a browser context with pre-authenticated state."""
-        browser = await self._launch_browser(playwright_instance, browser_type, headless)
+        browser = await self._launch_browser(
+            playwright_instance, browser_type, headless
+        )
 
         context = await browser.new_context(
-            storage_state=state_data["storage_state"],
-            viewport={"width": 1920, "height": 1080},
+            storage_state=state_data["storage_state"],  # Load all auth data
+            viewport={"width": 430, "height": 932},
             locale="he-IL",
             timezone_id="Asia/Jerusalem",
         )
 
-        logger.info(f"Created authenticated context with {len(state_data['storage_state'].get('cookies', []))} cookies")
+        logger.info(
+            f"Created authenticated context with {len(state_data['storage_state'].get('cookies', []))} cookies"
+        )
 
         return browser, context
 
-    async def _launch_browser(self, playwright, browser_type: str, headless: bool) -> Browser:
+    async def _launch_browser(
+        self, playwright, browser_type: str, headless: bool
+    ) -> Browser:
         """Launch browser with appropriate settings."""
         browser_launcher = {
             "chromium": playwright.chromium,
@@ -286,14 +327,18 @@ class AuthStateManager:
 
         browser = await browser_launcher[browser_type].launch(
             headless=headless,
-            args=["--no-sandbox", "--disable-dev-shm-usage"] if browser_type == "chromium" else [],
+            args=["--no-sandbox", "--disable-dev-shm-usage"]
+            if browser_type == "chromium"
+            else [],
         )
 
         logger.info(f"Launched {browser_type} browser (headless={headless})")
         return browser
 
 
-async def capture_authentication(url: str = None, environment: str = "test", browser: str = "chromium"):
+async def capture_authentication(
+    url: str = None, environment: str = "test", browser: str = "chromium"
+):
     """Main function to capture authentication state."""
     if url is None:
         url = "https://meditik.test.medical.idf.il/"
@@ -336,7 +381,9 @@ async def example_test_with_saved_auth():
 
     auth_manager = AuthStateManager()
 
-    state_data = await auth_manager.load_auth_state(environment="test", browser_type="chromium")
+    state_data = await auth_manager.load_auth_state(
+        environment="test", browser_type="chromium"
+    )
 
     if not state_data:
         print(f"{Fore.RED}❌ No valid auth state found. Please run capture first.")
@@ -366,7 +413,9 @@ async def ci_cd_test_runner():
 
     state = await auth_manager.load_auth_state("test", "chromium")
     if not state:
-        raise Exception("Auth state not found in CI/CD. Please update the stored auth file.")
+        raise Exception(
+            "Auth state not found in CI/CD. Please update the stored auth file."
+        )
 
     async with async_playwright() as p:
         browser, context = await auth_manager.create_authenticated_context(
@@ -384,15 +433,33 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="MEDITEK Authentication State Manager")
     parser.add_argument("--capture", action="store_true", help="Capture new auth state")
-    parser.add_argument("--test", action="store_true", help="Run example test with saved auth")
-    parser.add_argument("--url", type=str, help="Application URL", default="https://meditik.test.medical.idf.il/")
-    parser.add_argument("--env", type=str, choices=["test", "preprod", "prod"], default="test")
-    parser.add_argument("--browser", type=str, choices=["chromium", "firefox", "webkit"], default="chromium")
+    parser.add_argument(
+        "--test", action="store_true", help="Run example test with saved auth"
+    )
+    parser.add_argument(
+        "--url",
+        type=str,
+        help="Application URL",
+        default="https://meditik.test.medical.idf.il/",
+    )
+    parser.add_argument(
+        "--env", type=str, choices=["test", "preprod", "prod"], default="test"
+    )
+    parser.add_argument(
+        "--browser",
+        type=str,
+        choices=["chromium", "firefox", "webkit"],
+        default="chromium",
+    )
 
     args = parser.parse_args()
 
     if args.capture:
-        asyncio.run(capture_authentication(url=args.url, environment=args.env, browser=args.browser))
+        asyncio.run(
+            capture_authentication(
+                url=args.url, environment=args.env, browser=args.browser
+            )
+        )
     elif args.test:
         asyncio.run(example_test_with_saved_auth())
     else:
