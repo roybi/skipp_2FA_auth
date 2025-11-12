@@ -141,3 +141,25 @@ Call log:
 2025-11-09 10:46:48,695 - INFO - Found auth cookie: ai_authUser (domain: meditik.test.medical.idf.il)
 2025-11-09 10:46:48,704 - INFO - State saved to: auth_states\auth_state_test_chromium_20251109_104648.json
 2025-11-09 10:46:48,708 - INFO - Latest link updated: auth_states\auth_state_test_chromium_latest.json
+2025-11-12 13:56:41,740 - INFO - State directory: C:\_Dev\python\skipp_2FA_auth\auth_states
+2025-11-12 13:56:41,740 - WARNING - Saved auth state has expired (expired at 2025-11-10 10:46:48.597347)
+2025-11-12 13:56:41,740 - INFO - Run capture_auth_state() again to refresh
+2025-11-12 15:13:50,675 - INFO - State directory: C:\_Dev\python\skipp_2FA_auth\auth_states
+2025-11-12 15:13:50,683 - WARNING - Saved auth state has expired (expired at 2025-11-10 10:46:48.597347)
+2025-11-12 15:13:50,683 - INFO - Run capture_auth_state() again to refresh
+2025-11-12 15:45:13,592 - INFO - State directory: C:\_Dev\python\skipp_2FA_auth\auth_states
+2025-11-12 15:45:18,631 - INFO - Launched chromium browser (headless=False)
+2025-11-12 15:45:18,901 - INFO - Opening https://meditik.test.medical.idf.il/ for manual authentication...
+2025-11-12 15:47:58,478 - INFO - Captured 32 cookies
+2025-11-12 15:47:58,514 - INFO - Found token: 6edd79d4-efdd-46c4-b40d-fa5abf... (length: 1782)
+2025-11-12 15:47:58,514 - INFO - Found token: 6edd79d4-efdd-46c4-b40d-fa5abf... (length: 2089)
+2025-11-12 15:47:58,514 - INFO - Found token: 6edd79d4-efdd-46c4-b40d-fa5abf... (length: 1794)
+2025-11-12 15:47:58,514 - INFO - Captured 3 authentication tokens
+2025-11-12 15:47:58,514 - INFO - Found auth cookie: ESTSAUTHLIGHT (domain: login.microsoftonline.com)
+2025-11-12 15:47:58,514 - INFO - Found auth cookie: ESTSAUTHPERSISTENT (domain: .login.microsoftonline.com)
+2025-11-12 15:47:58,514 - INFO - Found auth cookie: ESTSAUTH (domain: .login.microsoftonline.com)
+2025-11-12 15:47:58,514 - INFO - Found auth cookie: ai_session (domain: login.microsoftonline.com)
+2025-11-12 15:47:58,514 - INFO - Found auth cookie: ai_session (domain: meditik.test.medical.idf.il)
+2025-11-12 15:47:58,514 - INFO - Found auth cookie: ai_authUser (domain: meditik.test.medical.idf.il)
+2025-11-12 15:47:58,518 - INFO - State saved to: auth_states\auth_state_test_chromium_20251112_154758.json
+2025-11-12 15:47:58,518 - INFO - Latest link updated: auth_states\auth_state_test_chromium_latest.json

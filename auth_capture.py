@@ -159,7 +159,7 @@ class AuthStateManager:
             "storage_state": storage_state,
             "metadata": {
                 "captured_at": datetime.now().isoformat(),
-                "expires_at": (datetime.now() + timedelta(hours=24)).isoformat(),
+                "expires_at": (datetime.now() + timedelta(hours=48)).isoformat(),
                 "url": page.url,
                 "title": await page.title(),
                 "environment": page.url,
