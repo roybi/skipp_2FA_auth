@@ -7,7 +7,13 @@
       "Bash(\"C:\\Program Files\\GitHub CLI\\gh.exe\" repo create skipp_2FA_auth --public --source=. --remote=origin --push)",
       "Bash(git config:*)",
       "Bash(git remote add:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(python.exe auth_capture.py:*)",
+      "Bash(python:*)",
+      "Bash(dir /s /b \"C:\\Users\\Roy Bichovsky\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\playwright\\*device*\")",
+      "Bash(timeout:*)",
+      "Bash(ping:*)",
+      "Bash(nul)"
     ],
     "deny": [],
     "ask": []
